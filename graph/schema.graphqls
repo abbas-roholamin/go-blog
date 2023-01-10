@@ -1,0 +1,70 @@
+# @format
+
+type Post {
+  id: ID!
+  tile: String
+  content: String
+  author: Author
+  comments: [Comment]
+  likes: [Like]
+}
+
+input PostInput {
+  tile: String!
+  content: String!
+  author: ID!
+}
+
+type Author {
+  id: ID!
+  first_name: String!
+  last_name: String!
+}
+
+input AuthorInput {
+  first_name: String!
+  last_name: String!
+}
+
+type Comment {
+  id: ID!
+  content: String!
+  post: ID!
+}
+
+input CommentInput {
+  content: String!
+  post: ID!
+}
+
+type Like {
+  id: ID!
+  Liked: Boolean!
+  post: ID!
+}
+
+input LikeInput {
+  Liked: Boolean!
+  post: ID!
+}
+
+type Query {
+  postLikesCount(id: ID!): Int
+  postCommentsCount(id: ID!): Int
+  authors: [Author]
+  posts: [Post]
+  post(id: ID!): Post
+}
+
+type Mutation {
+  createPost(input: PostInput!): Post
+  updatePost(id: ID!, input: PostInput!): Post
+  deletePost(id: ID!): Post
+  addAuthor(input: AuthorInput!): Author
+  updateAuthor(id: ID!, input: AuthorInput!): Author
+  deleteAuthor(id: ID!): Author
+  AddComment(input: CommentInput!): Comment
+  updateComment(id: ID!, input: CommentInput!): Comment
+  deleteComment(id: ID!): Comment
+  AddLike(input: LikeInput!): Like
+}
