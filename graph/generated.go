@@ -3,6 +3,7 @@
 package graph
 
 import (
+	"blog-post-api/graph/model"
 	"bytes"
 	"context"
 	"embed"
@@ -13,7 +14,6 @@ import (
 
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/99designs/gqlgen/graphql/introspection"
-	"blog-post-api/graph/model"
 	gqlparser "github.com/vektah/gqlparser/v2"
 	"github.com/vektah/gqlparser/v2/ast"
 )
@@ -81,7 +81,7 @@ type ComplexityRoot struct {
 		Content  func(childComplexity int) int
 		ID       func(childComplexity int) int
 		Likes    func(childComplexity int) int
-		Tile     func(childComplexity int) int
+		Title    func(childComplexity int) int
 	}
 
 	Query struct {
@@ -346,12 +346,12 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Post.Likes(childComplexity), true
 
-	case "Post.tile":
-		if e.complexity.Post.Tile == nil {
+	case "Post.title":
+		if e.complexity.Post.Title == nil {
 			break
 		}
 
-		return e.complexity.Post.Tile(childComplexity), true
+		return e.complexity.Post.Title(childComplexity), true
 
 	case "Query.authors":
 		if e.complexity.Query.Authors == nil {
@@ -500,7 +500,7 @@ func (ec *executionContext) field_Mutation_AddComment_args(ctx context.Context, 
 	var arg0 model.CommentInput
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNCommentInput2githubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐCommentInput(ctx, tmp)
+		arg0, err = ec.unmarshalNCommentInput2blogᚑpostᚑapiᚋgraphᚋmodelᚐCommentInput(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -515,7 +515,7 @@ func (ec *executionContext) field_Mutation_AddLike_args(ctx context.Context, raw
 	var arg0 model.LikeInput
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNLikeInput2githubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐLikeInput(ctx, tmp)
+		arg0, err = ec.unmarshalNLikeInput2blogᚑpostᚑapiᚋgraphᚋmodelᚐLikeInput(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -530,7 +530,7 @@ func (ec *executionContext) field_Mutation_addAuthor_args(ctx context.Context, r
 	var arg0 model.AuthorInput
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNAuthorInput2githubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐAuthorInput(ctx, tmp)
+		arg0, err = ec.unmarshalNAuthorInput2blogᚑpostᚑapiᚋgraphᚋmodelᚐAuthorInput(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -545,7 +545,7 @@ func (ec *executionContext) field_Mutation_createPost_args(ctx context.Context, 
 	var arg0 model.PostInput
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg0, err = ec.unmarshalNPostInput2githubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐPostInput(ctx, tmp)
+		arg0, err = ec.unmarshalNPostInput2blogᚑpostᚑapiᚋgraphᚋmodelᚐPostInput(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -614,7 +614,7 @@ func (ec *executionContext) field_Mutation_updateAuthor_args(ctx context.Context
 	var arg1 model.AuthorInput
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg1, err = ec.unmarshalNAuthorInput2githubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐAuthorInput(ctx, tmp)
+		arg1, err = ec.unmarshalNAuthorInput2blogᚑpostᚑapiᚋgraphᚋmodelᚐAuthorInput(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -638,7 +638,7 @@ func (ec *executionContext) field_Mutation_updateComment_args(ctx context.Contex
 	var arg1 model.CommentInput
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg1, err = ec.unmarshalNCommentInput2githubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐCommentInput(ctx, tmp)
+		arg1, err = ec.unmarshalNCommentInput2blogᚑpostᚑapiᚋgraphᚋmodelᚐCommentInput(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -662,7 +662,7 @@ func (ec *executionContext) field_Mutation_updatePost_args(ctx context.Context, 
 	var arg1 model.PostInput
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
-		arg1, err = ec.unmarshalNPostInput2githubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐPostInput(ctx, tmp)
+		arg1, err = ec.unmarshalNPostInput2blogᚑpostᚑapiᚋgraphᚋmodelᚐPostInput(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -1190,7 +1190,7 @@ func (ec *executionContext) _Mutation_createPost(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.Post)
 	fc.Result = res
-	return ec.marshalOPost2ᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐPost(ctx, field.Selections, res)
+	return ec.marshalOPost2ᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐPost(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Mutation_createPost(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1203,8 +1203,8 @@ func (ec *executionContext) fieldContext_Mutation_createPost(ctx context.Context
 			switch field.Name {
 			case "id":
 				return ec.fieldContext_Post_id(ctx, field)
-			case "tile":
-				return ec.fieldContext_Post_tile(ctx, field)
+			case "title":
+				return ec.fieldContext_Post_title(ctx, field)
 			case "content":
 				return ec.fieldContext_Post_content(ctx, field)
 			case "author":
@@ -1256,7 +1256,7 @@ func (ec *executionContext) _Mutation_updatePost(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.Post)
 	fc.Result = res
-	return ec.marshalOPost2ᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐPost(ctx, field.Selections, res)
+	return ec.marshalOPost2ᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐPost(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Mutation_updatePost(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1269,8 +1269,8 @@ func (ec *executionContext) fieldContext_Mutation_updatePost(ctx context.Context
 			switch field.Name {
 			case "id":
 				return ec.fieldContext_Post_id(ctx, field)
-			case "tile":
-				return ec.fieldContext_Post_tile(ctx, field)
+			case "title":
+				return ec.fieldContext_Post_title(ctx, field)
 			case "content":
 				return ec.fieldContext_Post_content(ctx, field)
 			case "author":
@@ -1322,7 +1322,7 @@ func (ec *executionContext) _Mutation_deletePost(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.Post)
 	fc.Result = res
-	return ec.marshalOPost2ᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐPost(ctx, field.Selections, res)
+	return ec.marshalOPost2ᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐPost(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Mutation_deletePost(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1335,8 +1335,8 @@ func (ec *executionContext) fieldContext_Mutation_deletePost(ctx context.Context
 			switch field.Name {
 			case "id":
 				return ec.fieldContext_Post_id(ctx, field)
-			case "tile":
-				return ec.fieldContext_Post_tile(ctx, field)
+			case "title":
+				return ec.fieldContext_Post_title(ctx, field)
 			case "content":
 				return ec.fieldContext_Post_content(ctx, field)
 			case "author":
@@ -1388,7 +1388,7 @@ func (ec *executionContext) _Mutation_addAuthor(ctx context.Context, field graph
 	}
 	res := resTmp.(*model.Author)
 	fc.Result = res
-	return ec.marshalOAuthor2ᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐAuthor(ctx, field.Selections, res)
+	return ec.marshalOAuthor2ᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐAuthor(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Mutation_addAuthor(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1448,7 +1448,7 @@ func (ec *executionContext) _Mutation_updateAuthor(ctx context.Context, field gr
 	}
 	res := resTmp.(*model.Author)
 	fc.Result = res
-	return ec.marshalOAuthor2ᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐAuthor(ctx, field.Selections, res)
+	return ec.marshalOAuthor2ᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐAuthor(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Mutation_updateAuthor(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1508,7 +1508,7 @@ func (ec *executionContext) _Mutation_deleteAuthor(ctx context.Context, field gr
 	}
 	res := resTmp.(*model.Author)
 	fc.Result = res
-	return ec.marshalOAuthor2ᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐAuthor(ctx, field.Selections, res)
+	return ec.marshalOAuthor2ᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐAuthor(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Mutation_deleteAuthor(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1568,7 +1568,7 @@ func (ec *executionContext) _Mutation_AddComment(ctx context.Context, field grap
 	}
 	res := resTmp.(*model.Comment)
 	fc.Result = res
-	return ec.marshalOComment2ᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐComment(ctx, field.Selections, res)
+	return ec.marshalOComment2ᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐComment(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Mutation_AddComment(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1628,7 +1628,7 @@ func (ec *executionContext) _Mutation_updateComment(ctx context.Context, field g
 	}
 	res := resTmp.(*model.Comment)
 	fc.Result = res
-	return ec.marshalOComment2ᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐComment(ctx, field.Selections, res)
+	return ec.marshalOComment2ᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐComment(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Mutation_updateComment(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1688,7 +1688,7 @@ func (ec *executionContext) _Mutation_deleteComment(ctx context.Context, field g
 	}
 	res := resTmp.(*model.Comment)
 	fc.Result = res
-	return ec.marshalOComment2ᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐComment(ctx, field.Selections, res)
+	return ec.marshalOComment2ᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐComment(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Mutation_deleteComment(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1748,7 +1748,7 @@ func (ec *executionContext) _Mutation_AddLike(ctx context.Context, field graphql
 	}
 	res := resTmp.(*model.Like)
 	fc.Result = res
-	return ec.marshalOLike2ᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐLike(ctx, field.Selections, res)
+	return ec.marshalOLike2ᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐLike(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Mutation_AddLike(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1827,8 +1827,8 @@ func (ec *executionContext) fieldContext_Post_id(ctx context.Context, field grap
 	return fc, nil
 }
 
-func (ec *executionContext) _Post_tile(ctx context.Context, field graphql.CollectedField, obj *model.Post) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Post_tile(ctx, field)
+func (ec *executionContext) _Post_title(ctx context.Context, field graphql.CollectedField, obj *model.Post) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Post_title(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -1841,7 +1841,7 @@ func (ec *executionContext) _Post_tile(ctx context.Context, field graphql.Collec
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.Tile, nil
+		return obj.Title, nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -1855,7 +1855,7 @@ func (ec *executionContext) _Post_tile(ctx context.Context, field graphql.Collec
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Post_tile(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Post_title(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
 		Object:     "Post",
 		Field:      field,
@@ -1934,7 +1934,7 @@ func (ec *executionContext) _Post_author(ctx context.Context, field graphql.Coll
 	}
 	res := resTmp.(*model.Author)
 	fc.Result = res
-	return ec.marshalOAuthor2ᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐAuthor(ctx, field.Selections, res)
+	return ec.marshalOAuthor2ᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐAuthor(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Post_author(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -1983,7 +1983,7 @@ func (ec *executionContext) _Post_comments(ctx context.Context, field graphql.Co
 	}
 	res := resTmp.([]*model.Comment)
 	fc.Result = res
-	return ec.marshalOComment2ᚕᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐComment(ctx, field.Selections, res)
+	return ec.marshalOComment2ᚕᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐComment(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Post_comments(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -2032,7 +2032,7 @@ func (ec *executionContext) _Post_likes(ctx context.Context, field graphql.Colle
 	}
 	res := resTmp.([]*model.Like)
 	fc.Result = res
-	return ec.marshalOLike2ᚕᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐLike(ctx, field.Selections, res)
+	return ec.marshalOLike2ᚕᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐLike(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Post_likes(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -2185,7 +2185,7 @@ func (ec *executionContext) _Query_authors(ctx context.Context, field graphql.Co
 	}
 	res := resTmp.([]*model.Author)
 	fc.Result = res
-	return ec.marshalOAuthor2ᚕᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐAuthor(ctx, field.Selections, res)
+	return ec.marshalOAuthor2ᚕᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐAuthor(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_authors(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -2234,7 +2234,7 @@ func (ec *executionContext) _Query_posts(ctx context.Context, field graphql.Coll
 	}
 	res := resTmp.([]*model.Post)
 	fc.Result = res
-	return ec.marshalOPost2ᚕᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐPost(ctx, field.Selections, res)
+	return ec.marshalOPost2ᚕᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐPost(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_posts(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -2247,8 +2247,8 @@ func (ec *executionContext) fieldContext_Query_posts(ctx context.Context, field 
 			switch field.Name {
 			case "id":
 				return ec.fieldContext_Post_id(ctx, field)
-			case "tile":
-				return ec.fieldContext_Post_tile(ctx, field)
+			case "title":
+				return ec.fieldContext_Post_title(ctx, field)
 			case "content":
 				return ec.fieldContext_Post_content(ctx, field)
 			case "author":
@@ -2289,7 +2289,7 @@ func (ec *executionContext) _Query_post(ctx context.Context, field graphql.Colle
 	}
 	res := resTmp.(*model.Post)
 	fc.Result = res
-	return ec.marshalOPost2ᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐPost(ctx, field.Selections, res)
+	return ec.marshalOPost2ᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐPost(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Query_post(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -2302,8 +2302,8 @@ func (ec *executionContext) fieldContext_Query_post(ctx context.Context, field g
 			switch field.Name {
 			case "id":
 				return ec.fieldContext_Post_id(ctx, field)
-			case "tile":
-				return ec.fieldContext_Post_tile(ctx, field)
+			case "title":
+				return ec.fieldContext_Post_title(ctx, field)
 			case "content":
 				return ec.fieldContext_Post_content(ctx, field)
 			case "author":
@@ -4347,18 +4347,18 @@ func (ec *executionContext) unmarshalInputPostInput(ctx context.Context, obj int
 		asMap[k] = v
 	}
 
-	fieldsInOrder := [...]string{"tile", "content", "author"}
+	fieldsInOrder := [...]string{"title", "content", "author"}
 	for _, k := range fieldsInOrder {
 		v, ok := asMap[k]
 		if !ok {
 			continue
 		}
 		switch k {
-		case "tile":
+		case "title":
 			var err error
 
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("tile"))
-			it.Tile, err = ec.unmarshalNString2string(ctx, v)
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("title"))
+			it.Title, err = ec.unmarshalNString2string(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -4625,9 +4625,9 @@ func (ec *executionContext) _Post(ctx context.Context, sel ast.SelectionSet, obj
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
-		case "tile":
+		case "title":
 
-			out.Values[i] = ec._Post_tile(ctx, field, obj)
+			out.Values[i] = ec._Post_title(ctx, field, obj)
 
 		case "content":
 
@@ -5116,7 +5116,7 @@ func (ec *executionContext) ___Type(ctx context.Context, sel ast.SelectionSet, o
 
 // region    ***************************** type.gotpl *****************************
 
-func (ec *executionContext) unmarshalNAuthorInput2githubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐAuthorInput(ctx context.Context, v interface{}) (model.AuthorInput, error) {
+func (ec *executionContext) unmarshalNAuthorInput2blogᚑpostᚑapiᚋgraphᚋmodelᚐAuthorInput(ctx context.Context, v interface{}) (model.AuthorInput, error) {
 	res, err := ec.unmarshalInputAuthorInput(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
@@ -5136,7 +5136,7 @@ func (ec *executionContext) marshalNBoolean2bool(ctx context.Context, sel ast.Se
 	return res
 }
 
-func (ec *executionContext) unmarshalNCommentInput2githubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐCommentInput(ctx context.Context, v interface{}) (model.CommentInput, error) {
+func (ec *executionContext) unmarshalNCommentInput2blogᚑpostᚑapiᚋgraphᚋmodelᚐCommentInput(ctx context.Context, v interface{}) (model.CommentInput, error) {
 	res, err := ec.unmarshalInputCommentInput(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
@@ -5156,12 +5156,12 @@ func (ec *executionContext) marshalNID2string(ctx context.Context, sel ast.Selec
 	return res
 }
 
-func (ec *executionContext) unmarshalNLikeInput2githubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐLikeInput(ctx context.Context, v interface{}) (model.LikeInput, error) {
+func (ec *executionContext) unmarshalNLikeInput2blogᚑpostᚑapiᚋgraphᚋmodelᚐLikeInput(ctx context.Context, v interface{}) (model.LikeInput, error) {
 	res, err := ec.unmarshalInputLikeInput(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) unmarshalNPostInput2githubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐPostInput(ctx context.Context, v interface{}) (model.PostInput, error) {
+func (ec *executionContext) unmarshalNPostInput2blogᚑpostᚑapiᚋgraphᚋmodelᚐPostInput(ctx context.Context, v interface{}) (model.PostInput, error) {
 	res, err := ec.unmarshalInputPostInput(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
@@ -5434,7 +5434,7 @@ func (ec *executionContext) marshalN__TypeKind2string(ctx context.Context, sel a
 	return res
 }
 
-func (ec *executionContext) marshalOAuthor2ᚕᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐAuthor(ctx context.Context, sel ast.SelectionSet, v []*model.Author) graphql.Marshaler {
+func (ec *executionContext) marshalOAuthor2ᚕᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐAuthor(ctx context.Context, sel ast.SelectionSet, v []*model.Author) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -5461,7 +5461,7 @@ func (ec *executionContext) marshalOAuthor2ᚕᚖgithubᚗcomᚋabbasᚑroholami
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOAuthor2ᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐAuthor(ctx, sel, v[i])
+			ret[i] = ec.marshalOAuthor2ᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐAuthor(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -5475,7 +5475,7 @@ func (ec *executionContext) marshalOAuthor2ᚕᚖgithubᚗcomᚋabbasᚑroholami
 	return ret
 }
 
-func (ec *executionContext) marshalOAuthor2ᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐAuthor(ctx context.Context, sel ast.SelectionSet, v *model.Author) graphql.Marshaler {
+func (ec *executionContext) marshalOAuthor2ᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐAuthor(ctx context.Context, sel ast.SelectionSet, v *model.Author) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -5508,7 +5508,7 @@ func (ec *executionContext) marshalOBoolean2ᚖbool(ctx context.Context, sel ast
 	return res
 }
 
-func (ec *executionContext) marshalOComment2ᚕᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐComment(ctx context.Context, sel ast.SelectionSet, v []*model.Comment) graphql.Marshaler {
+func (ec *executionContext) marshalOComment2ᚕᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐComment(ctx context.Context, sel ast.SelectionSet, v []*model.Comment) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -5535,7 +5535,7 @@ func (ec *executionContext) marshalOComment2ᚕᚖgithubᚗcomᚋabbasᚑroholam
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOComment2ᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐComment(ctx, sel, v[i])
+			ret[i] = ec.marshalOComment2ᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐComment(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -5549,7 +5549,7 @@ func (ec *executionContext) marshalOComment2ᚕᚖgithubᚗcomᚋabbasᚑroholam
 	return ret
 }
 
-func (ec *executionContext) marshalOComment2ᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐComment(ctx context.Context, sel ast.SelectionSet, v *model.Comment) graphql.Marshaler {
+func (ec *executionContext) marshalOComment2ᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐComment(ctx context.Context, sel ast.SelectionSet, v *model.Comment) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -5572,7 +5572,7 @@ func (ec *executionContext) marshalOInt2ᚖint(ctx context.Context, sel ast.Sele
 	return res
 }
 
-func (ec *executionContext) marshalOLike2ᚕᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐLike(ctx context.Context, sel ast.SelectionSet, v []*model.Like) graphql.Marshaler {
+func (ec *executionContext) marshalOLike2ᚕᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐLike(ctx context.Context, sel ast.SelectionSet, v []*model.Like) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -5599,7 +5599,7 @@ func (ec *executionContext) marshalOLike2ᚕᚖgithubᚗcomᚋabbasᚑroholamin�
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOLike2ᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐLike(ctx, sel, v[i])
+			ret[i] = ec.marshalOLike2ᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐLike(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -5613,14 +5613,14 @@ func (ec *executionContext) marshalOLike2ᚕᚖgithubᚗcomᚋabbasᚑroholamin�
 	return ret
 }
 
-func (ec *executionContext) marshalOLike2ᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐLike(ctx context.Context, sel ast.SelectionSet, v *model.Like) graphql.Marshaler {
+func (ec *executionContext) marshalOLike2ᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐLike(ctx context.Context, sel ast.SelectionSet, v *model.Like) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
 	return ec._Like(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalOPost2ᚕᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐPost(ctx context.Context, sel ast.SelectionSet, v []*model.Post) graphql.Marshaler {
+func (ec *executionContext) marshalOPost2ᚕᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐPost(ctx context.Context, sel ast.SelectionSet, v []*model.Post) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -5647,7 +5647,7 @@ func (ec *executionContext) marshalOPost2ᚕᚖgithubᚗcomᚋabbasᚑroholamin�
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOPost2ᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐPost(ctx, sel, v[i])
+			ret[i] = ec.marshalOPost2ᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐPost(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -5661,7 +5661,7 @@ func (ec *executionContext) marshalOPost2ᚕᚖgithubᚗcomᚋabbasᚑroholamin�
 	return ret
 }
 
-func (ec *executionContext) marshalOPost2ᚖgithubᚗcomᚋabbasᚑroholaminᚋblogᚑpostᚑapiᚋgraphᚋmodelᚐPost(ctx context.Context, sel ast.SelectionSet, v *model.Post) graphql.Marshaler {
+func (ec *executionContext) marshalOPost2ᚖblogᚑpostᚑapiᚋgraphᚋmodelᚐPost(ctx context.Context, sel ast.SelectionSet, v *model.Post) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
