@@ -11,7 +11,7 @@ import (
 type Author struct {
 	ID        string `json:"id" gorm:"primaryKey; type:uuid;"`
 	FirstName string `json:"first_name"`
-	LastName  string `json:"last_name"` 
+	LastName  string `json:"last_name"`
 }
 
 type AuthorInput struct {
@@ -27,7 +27,7 @@ type Comment struct {
 
 type CommentInput struct {
 	Content string `json:"content"`
-	Post    string `json:"post"`
+	Post    string `json:"post_id"`
 }
 
 type Like struct {
@@ -38,12 +38,12 @@ type Like struct {
 
 type LikeInput struct {
 	Liked bool   `json:"Liked"`
-	Post  string `json:"post"`
+	Post  string `json:"post_id"`
 }
 
 type Post struct {
 	ID       string     `json:"id" gorm:"primaryKey; type:uuid;"`
-	Tile     *string    `json:"tile"`
+	Title    *string    `json:"title"`
 	Content  *string    `json:"content"`
 	AuthorID *string 	`json:"author_Id"`
 	Author   *Author    `json:"author" gorm:"references:ID"`
@@ -52,7 +52,7 @@ type Post struct {
 }
 
 type PostInput struct {
-	Tile    string `json:"tile"`
+	Title   string `json:"title"`
 	Content string `json:"content"`
 	Author  string `json:"author"`
 }
